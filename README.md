@@ -28,8 +28,8 @@ MCDF的结构来看主要可以分为如下几个部分：
 地址0x14 通道2状态寄存器 32bits 只读寄存器和地址0x18 通道3状态寄存器 32bits 只读寄存器同通道1状态寄存器描述。
 
 ## 测试平台构建
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200702230510409.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxOTcwNTEy,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200702224446816.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxOTcwNTEy,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/uvmtb1.jpg)
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/reg.jpg)
 ## 验证计划表格
 | 测试功能点 |  测试内容 | 测试类名
 |--|--|--|
@@ -43,9 +43,27 @@ MCDF的结构来看主要可以分为如下几个部分：
 | 下行从端低带宽测试 | 将MCDF下行数据接收端设置为小存储和低带宽的类型，使得formatter 发送数据后，下行从端有更多的机会延迟grant信号，用来模拟真实场景| mcdf_down_stream_low_bandwidth_test
 | 全随机测试 | 将不同数据通道的使能，打包长度，优先级全部设置为随机进行测试| mcdf_full_random_test
 ## 覆盖率收集
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200702222021797.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxOTcwNTEy,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200702222130147.png#pic_center)
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/funcov.png)
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/cov.png)
 # 基于PYNQ-Z2的卷积神经网络设计
-## 硬件架构设计
+## 硬件设计
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/zynq.png)
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/sys.png)
 ## 软件设计
-## 系统性能评估
+ 1. keras训练lenet5，保存h5模型
+ 2. 提取h5模型，分别转为bin和npz格式文件
+ 3. 量化权重和各个层的精度
+ 4. 根据hls提供的地址编写python驱动并完成测试
+ 5. 在Arm上使用调用numpy nn，tensorflow和keras进行测试
+## 系统评估
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/util.png)
+![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/power.png)
+| type  | ARM | FPGA |
+| :-- | :---| :---|
+| 1 conv  | 70s | 0.004s |
+| 1 pool | 2.03s | 0.003s |
+| 10 images | 788.36s | 0.18s |
+| testset | \ | 178.15s|
+| numpy nn | 321.44s  | \|
+| tensorflow1.4.1 |  72.69s| \ |
+| keras2.0.8 |  104.4s| \ |
