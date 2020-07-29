@@ -1,5 +1,20 @@
 
 
+# 基于UVM的AHB2APB Bridge验证
+## AHB2APB SPEC
+### Cortex™-M System Design Kit  
+![在这里插入图片描述](https://s1.ax1x.com/2020/07/29/aZ1mt0.png)
+![aZJSbQ.png](https://s1.ax1x.com/2020/07/29/aZJSbQ.png)
+![aZGzDg.png](https://s1.ax1x.com/2020/07/29/aZGzDg.png)
+
+## 测试平台层次
+
+![aZUyfs.png](https://s1.ax1x.com/2020/07/29/aZUyfs.png)
+![aZUcpn.png](https://s1.ax1x.com/2020/07/29/aZUcpn.png)
+
+## 覆盖率收集
+![aZ3D2T.png](https://s1.ax1x.com/2020/07/29/aZ3D2T.png)
+![aZ3rxU.png](https://s1.ax1x.com/2020/07/29/aZ3rxU.png)
 
 # 基于UVM的MCDF验证环境搭建
 ## 硬件设计描述
@@ -28,8 +43,8 @@ MCDF的结构来看主要可以分为如下几个部分：
 地址0x14 通道2状态寄存器 32bits 只读寄存器和地址0x18 通道3状态寄存器 32bits 只读寄存器同通道1状态寄存器描述。
 
 ## 测试平台构建
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/uvmtb1.jpg)
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/reg.jpg)
+![UFOfrn.jpg](https://s1.ax1x.com/2020/07/07/UFOfrn.jpg)
+![UFOs58.jpg](https://s1.ax1x.com/2020/07/07/UFOs58.jpg)
 ## 验证计划表格
 | 测试功能点 |  测试内容 | 测试类名
 |--|--|--|
@@ -43,12 +58,12 @@ MCDF的结构来看主要可以分为如下几个部分：
 | 下行从端低带宽测试 | 将MCDF下行数据接收端设置为小存储和低带宽的类型，使得formatter 发送数据后，下行从端有更多的机会延迟grant信号，用来模拟真实场景| mcdf_down_stream_low_bandwidth_test
 | 全随机测试 | 将不同数据通道的使能，打包长度，优先级全部设置为随机进行测试| mcdf_full_random_test
 ## 覆盖率收集
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/funcov.png)
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/cov.png)
+![UFOrUf.png](https://s1.ax1x.com/2020/07/29/aZ3uVA.png)
+![UFODVP.png](https://s1.ax1x.com/2020/07/07/UFODVP.png)
 # 基于PYNQ-Z2的卷积神经网络设计
 ## 硬件设计
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/zynq.png)
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/sys.png)
+![UFOWKs.png](https://s1.ax1x.com/2020/07/07/UFOWKs.png)
+![UFOg2Q.png](https://s1.ax1x.com/2020/07/07/UFOg2Q.png)
 ## 软件设计
  1. keras训练lenet5，保存h5模型
  2. 提取h5模型，分别转为bin和npz格式文件
@@ -56,14 +71,14 @@ MCDF的结构来看主要可以分为如下几个部分：
  4. 根据hls提供的地址编写python驱动并完成测试
  5. 在Arm上使用调用numpy nn，tensorflow和keras进行测试
 ## 系统评估
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/util.png)
-![在这里插入图片描述](https://github.com/cyyy1/v_pro/img/power.png)
+![UFOc8g.png](https://s1.ax1x.com/2020/07/07/UFOc8g.png)
+![UFO6PS.png](https://s1.ax1x.com/2020/07/07/UFO6PS.png)
 | type  | ARM | FPGA |
-| :-- | :---| :---|
+| :-- | :-- | :-- |
 | 1 conv  | 70s | 0.004s |
 | 1 pool | 2.03s | 0.003s |
 | 10 images | 788.36s | 0.18s |
-| testset | \ | 178.15s|
-| numpy nn | 321.44s  | \|
+| testset | \ | 178.15s |
+| numpy nn | 321.44s  | \ |
 | tensorflow1.4.1 |  72.69s| \ |
 | keras2.0.8 |  104.4s| \ |
